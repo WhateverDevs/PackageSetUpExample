@@ -19,3 +19,35 @@ After creating the package.json file, Unity should recognize the package and sho
 ![package-recognized](Docs/Imgs/2019-11-07%2014_48_50-Mail.png)
 
 You can now edit the package and make the changes you need to make. Then commit and push (or do whatever branch-PR flow you do).
+
+To publish the package, login to our registry with (creating a user for the registry is another story):
+
+```
+npm login --registry http://upm.rodrigovarga.com
+```
+
+After logging in, make sure your console is on the package root and run the command:
+
+```
+npm publish --registry http://upm.rodrigovarga.com
+```
+
+And that's it, the package is published.
+
+To use the packages of that registry on a Unity project, enter the Scoped Registry adding the following to the manifest.json of that project.
+
+````json
+"scopedRegistries": [
+    {
+      "name": "Whatever Devs",
+      "url": "http://upm.rodrigovarga.com",
+      "scopes": [
+        "whateverdevs"
+      ]
+    }
+  ]
+````
+
+After that, Unity should show the packages of that scope (whateverdevs) on the package manager:
+
+![manage](Docs/Imgs/2019-11-07%2015_39_12-Test%20-%20SampleScene%20-%20PC,%20Mac%20&%20Linux%20Standalone%20-%20Unity%202019.2.11f1%20_DX11_.png)
